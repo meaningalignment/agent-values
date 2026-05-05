@@ -44,15 +44,7 @@ for (const file of files) {
 }
 
 const now = new Date().toISOString();
-const output = `# User's Values
-
-This file is generated from ${CARDS_DIR}/. Do not edit directly.
-Last built: ${now}
-
----
-
-${sections.join("\n\n---\n\n")}
-`;
+const output = `# User's Values\n\nThis file is generated from ${CARDS_DIR}/. Do not edit directly.\nLast built: ${now}\n\n---\n\n${sections.join("\n\n---\n\n")}\n`;
 
 writeFileSync(OUTPUT, output);
 console.log(`VALUES.md rebuilt with ${files.length} card(s) at ${now}`);

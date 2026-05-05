@@ -14,22 +14,20 @@ and consult them when it's about to make a value-laden choice on your behalf.
 Designed for [OpenClaw](https://openclaw.dev), but the skill files are plain
 markdown — any agent harness that loads markdown skills should work.
 
-## The split: package vs runtime state
+## Package vs runtime state
 
-This repo contains the **portable skill package**.
+This repo contains the **portable skill package** only.
 
-Your actual values data should live in a separate **runtime values store**.
-That includes:
+Your actual values data lives in a separate **runtime values store** outside
+this repo. That includes:
 
 - value cards
 - transcripts
 - generated `VALUES.md`
-- the local `build.ts` used to rebuild `VALUES.md`
+- the installed `build.ts`
 
-This is the standard shape for a skill like this:
-- skills/resources live in the package
-- user data lives outside the package
-- reinstalling or updating the skill does not overwrite the user’s values
+That is the intended shape. The repo should not contain live values data or
+template cards/transcripts.
 
 ## Runtime values path
 
@@ -38,35 +36,31 @@ The skills use this path convention:
 - **Preferred:** `AGENT_VALUES_DIR`
 - **Fallback:** `~/.openclaw/values`
 
-So if `AGENT_VALUES_DIR` is unset, cards/transcripts/`VALUES.md` live under:
+So if `AGENT_VALUES_DIR` is unset, runtime state lives under:
 
 ```bash
 ~/.openclaw/values
 ```
 
-That gives you a portable default without hardcoding a machine-specific
-workspace path.
-
 ## Install
 
-### Local OpenClaw install (recommended first)
-
-For local testing on this machine:
+For local OpenClaw testing:
 
 ```bash
 git clone https://github.com/meaningalignment/agent-values.git
 cd agent-values
-./install-openclaw-local.sh
+./install.sh
 openclaw gateway restart
 ```
 
-What this does:
+What `install.sh` does:
 - installs the skills into the local OpenClaw skills directory
-- installs the runtime values build scaffolding into `AGENT_VALUES_DIR`
-  or `~/.openclaw/values`
+- creates the runtime values directory if needed
+- installs `build.ts` into the runtime values directory
+- creates a minimal `VALUES.md` if missing
 - preserves existing cards/transcripts/`VALUES.md`
 
-By default, `install-openclaw-local.sh` uses:
+By default, `install.sh` uses:
 
 - skills: `/root/.openclaw/workspace/.openclaw/skills/`
 - values runtime: `~/.openclaw/values`
@@ -74,13 +68,12 @@ By default, `install-openclaw-local.sh` uses:
 If you want a different runtime values location:
 
 ```bash
-AGENT_VALUES_DIR=/some/other/path ./install-openclaw-local.sh
+AGENT_VALUES_DIR=/some/other/path ./install.sh
 ```
 
-### ClawHub publish/install path
+## ClawHub publish/install path
 
-This repo is structured so the portable payload is the `skills/` directory.
-The local installer is just convenience glue for OpenClaw development.
+The portable payload is the `skills/` directory.
 
 Typical publish flow:
 
@@ -90,7 +83,7 @@ clawhub publish ./skills/values-consult --slug values-consult --name "Values Con
 ```
 
 ClawHub publishes individual skill folders, so this repo currently maps most
-cleanly to **two published skills** rather than one monolithic package.
+cleanly to **two published skills**.
 
 Typical install flow after publishing:
 
@@ -98,15 +91,6 @@ Typical install flow after publishing:
 clawhub install values-elicit
 clawhub install values-consult
 ```
-
-### Legacy ~/.agents install
-
-```bash
-./install.sh
-```
-
-That installs the skill files into `~/.agents/skills/` and installs the
-runtime values scaffolding into `AGENT_VALUES_DIR` or `~/.openclaw/values`.
 
 ## Repository structure
 
@@ -117,20 +101,10 @@ agent-values/
 │   │   └── SKILL.md
 │   └── values-consult/
 │       └── SKILL.md
-├── values/
-│   ├── build.ts
-│   ├── VALUES.md
-│   ├── cards/
-│   └── transcripts/
-├── install-openclaw-local.sh
+├── values-build.ts
 ├── install.sh
 └── clawhub.json
 ```
-
-Interpretation:
-- `skills/` = portable skill package content
-- `values/` = starter/runtime scaffolding shipped with the repo
-- installed runtime data should live outside the repo
 
 ## Use
 
@@ -140,17 +114,13 @@ Interpretation:
 /values
 ```
 
-Or just say something like:
+Or just say:
 
 ```text
 run values elicitation
 ```
 
-The agent will walk you through a 10-30 minute conversation about something
-that matters to you, draft a values card, and write it into the runtime
-values store.
-
-If `AGENT_VALUES_DIR` is unset, that means:
+If `AGENT_VALUES_DIR` is unset, the runtime outputs land here:
 
 ```bash
 ~/.openclaw/values/cards/<slug>.md
@@ -179,25 +149,19 @@ AGENT_VALUES_DIR=/my/values node /my/values/build.ts
 ```bash
 cd agent-values
 git pull
-./install-openclaw-local.sh
+./install.sh
 ```
 
-Re-running the installer overwrites the skill files and `build.ts` but
-preserves your existing cards, transcripts, and `VALUES.md`.
+Re-running the installer overwrites the installed skill files and `build.ts`
+but preserves your existing runtime values data.
 
 ## Uninstall
 
-Local OpenClaw skill uninstall:
+Remove the installed skills:
 
 ```bash
 rm -rf /root/.openclaw/workspace/.openclaw/skills/values-elicit
 rm -rf /root/.openclaw/workspace/.openclaw/skills/values-consult
-```
-
-Legacy `~/.agents` skill uninstall:
-
-```bash
-rm -rf ~/.agents/skills/values-elicit ~/.agents/skills/values-consult
 ```
 
 Runtime values data is separate and remains until you delete it explicitly.
