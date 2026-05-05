@@ -1,8 +1,9 @@
 import { readdirSync, readFileSync, writeFileSync } from "node:fs";
-import { join } from "node:path";
+import { join, resolve } from "node:path";
 
-const CARDS_DIR = join(import.meta.dir, "cards");
-const OUTPUT = join(import.meta.dir, "VALUES.md");
+const VALUES_DIR = resolve(process.env.AGENT_VALUES_DIR || `${process.env.HOME || "~"}/.openclaw/values`);
+const CARDS_DIR = join(VALUES_DIR, "cards");
+const OUTPUT = join(VALUES_DIR, "VALUES.md");
 
 function parseFrontmatter(raw: string): { data: Record<string, any>; content: string } {
   const match = raw.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
@@ -37,15 +38,15 @@ for (const file of files) {
   const title = data.title || file.replace(/\.md$/, "");
   const contexts = Array.isArray(data.contexts) ? data.contexts.join(", ") : data.contexts || "";
 
-  let body = content.trimStart();
+  const body = content.trimStart();
   const section = `# ${title}\n\n*Contexts: ${contexts}*\n\n${body}`;
   sections.push(section);
 }
 
 const now = new Date().toISOString();
-const output = `# Oliver's Values
+const output = `# User's Values
 
-This file is generated from ~/.agents/values/cards/. Do not edit directly.
+This file is generated from ${CARDS_DIR}/. Do not edit directly.
 Last built: ${now}
 
 ---

@@ -1,6 +1,6 @@
 ---
 name: values-elicit
-description: Run a Moral Graph Elicitation interview when the user expresses a strong feeling, a goal, a norm, or a difficult choice in a way that suggests an underlying source of meaning worth capturing. Produces a values card stored in ~/.agents/values/cards/. Also runnable as the /values slash command.
+description: Run a Moral Graph Elicitation interview when the user expresses a strong feeling, a goal, a norm, or a difficult choice in a way that suggests an underlying source of meaning worth capturing. Produces a values card stored in the configured values store. Also runnable as the /values slash command.
 user-invocable: true
 metadata: {"openclaw": {"emoji": "🪺"}}
 ---
@@ -186,12 +186,17 @@ Draft it, show it to me, iterate until I'm happy.
 
 ## Output: writing the files
 
+Use this values store path unless the local install docs specify otherwise:
+
+- Preferred: `$AGENT_VALUES_DIR`
+- Fallback: `~/.openclaw/values`
+
 Once I'm happy with the title, story, explication, policies, and contexts:
 
 1. **Pick a slug.** Kebab-cased version of the title. E.g., "Tending the
    Quiet" → `tending-the-quiet`.
 
-2. **Write the card** at `~/.agents/values/cards/<slug>.md` using the format:
+2. **Write the card** at `$AGENT_VALUES_DIR/cards/<slug>.md` (or `~/.openclaw/values/cards/<slug>.md` if `AGENT_VALUES_DIR` is unset) using the format:
 
    ```markdown
    ---
@@ -215,10 +220,10 @@ Once I'm happy with the title, story, explication, policies, and contexts:
    ```
 
 3. **Write the transcript** at
-   `~/.agents/values/transcripts/<YYYY-MM-DD>-<slug>.md`. Plain markdown
+   `$AGENT_VALUES_DIR/transcripts/<YYYY-MM-DD>-<slug>.md` (or `~/.openclaw/values/transcripts/<YYYY-MM-DD>-<slug>.md` if unset). Plain markdown
    dump of our conversation with `**Me:**` / `**Agent:**` turn markers.
 
-4. **Rebuild VALUES.md** by running `bun ~/.agents/values/build.ts`.
+4. **Rebuild VALUES.md** by running the local values build script in the configured store, typically `node "$AGENT_VALUES_DIR/build.ts"` (or `node ~/.openclaw/values/build.ts` if unset).
 
 5. **Confirm** to me that the card was written, with its file path.
 
@@ -240,5 +245,5 @@ The story is the one-sentence summary that goes under `## Story`. It must:
 - Not cheesy.
 - Distinguishes this source of meaning from similar ones I might already
   have cards for.
-- Before finalizing, check `~/.agents/values/cards/` and avoid title
+- Before finalizing, check `$AGENT_VALUES_DIR/cards/` (or `~/.openclaw/values/cards/` if unset) and avoid title
   collisions.

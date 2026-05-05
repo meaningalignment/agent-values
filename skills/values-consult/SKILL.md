@@ -1,6 +1,6 @@
 ---
 name: values-consult
-description: Consult Oliver's values when about to make a value-laden choice on his behalf. Use before authoring opinions, ranking statements, voting, drafting communications that take a stance, or any task where the right action depends on what Oliver cares about. Reads ~/.agents/values/VALUES.md.
+description: Consult Oliver's values when about to make a value-laden choice on his behalf. Use before authoring opinions, ranking statements, voting, drafting communications that take a stance, or any task where the right action depends on what Oliver cares about. Reads the configured values store.
 user-invocable: false
 metadata: {"openclaw": {"emoji": "🧭"}}
 ---
@@ -18,7 +18,7 @@ depends on his values, not just on facts. Examples:
 
 ## What to do
 
-1. **Read `~/.agents/values/VALUES.md`** in full. This is a concatenation
+1. **Read `$AGENT_VALUES_DIR/VALUES.md`** in full (or `~/.openclaw/values/VALUES.md` if `AGENT_VALUES_DIR` is unset). This is a concatenation
    of Oliver's values cards. It's not long — read all of it.
 
 2. **Identify which cards are relevant** to the task at hand. Often more
