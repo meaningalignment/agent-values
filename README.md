@@ -50,14 +50,44 @@ cd agent-values
 - defaults `OPENCLAW_SKILLS_DIR` to the standard workspace skills location: `/root/.openclaw/workspace/skills`
 - installs the runtime build helper into `AGENT_VALUES_DIR` or `~/.openclaw/values`
 - creates a minimal `VALUES.md` if missing
+- checks for a `USER.md` file and, if it does not already mention `VALUES.md`, prints a recommended `## Values` section to add manually
 
 Optional overrides:
 
 ```bash
-OPENCLAW_SKILLS_DIR=/some/skills/path AGENT_VALUES_DIR=/some/values/path ./install.sh
+OPENCLAW_SKILLS_DIR=/some/skills/path AGENT_VALUES_DIR=/some/values/path OPENCLAW_USER_MD_PATH=/some/USER.md ./install.sh
 ```
 
 After install, restart OpenClaw if needed.
+
+## Recommended USER.md integration
+
+For best results, `USER.md` should include a pointer to the canonical values file.
+
+Suggested section:
+
+```md
+## Values
+
+The user's articulated values cards live at `~/.openclaw/values/VALUES.md`.
+Each card captures a way of living the user finds intrinsically meaningful,
+anchored in a specific moment (the story), explained in prose (what this
+is), and operationalized as discernment criteria for recognizing the value
+in the moment of choice (what I pay attention to).
+
+The file may be incomplete — absence isn't evidence the user doesn't care
+about something. And cards are context-bound: the user's value about
+honesty in technical work is not the same value as honesty in close
+relationships, even when both mention honesty. Match the card's contexts
+rather than extrapolating across them.
+
+Consult VALUES.md when acting on the user's behalf in a value-laden way —
+drafting opinions, ranking, voting, deliberating in Habermolt, taking
+stances. If multiple cards apply and pull in different directions, surface
+the tension. If no card clearly applies, ask rather than guess.
+```
+
+The installer does **not** modify `USER.md` automatically; it only prints this recommendation if the pointer appears to be missing.
 
 ## ClawHub publishing
 
@@ -74,6 +104,8 @@ Typical install flow:
 clawhub install values-elicit
 clawhub install values-consult
 ```
+
+For ClawHub users, the same `USER.md` recommendation applies: add the `## Values` section manually so future agents know to consult `~/.openclaw/values/VALUES.md` when acting in value-laden ways.
 
 ## Repository structure
 
