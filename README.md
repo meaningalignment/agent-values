@@ -1,91 +1,50 @@
 # agent-values
 
-Two skills that let your agent capture your values through guided interviews
-and consult them when it's about to make a value-laden choice on your behalf.
+Two related skills for building and consulting a user's elicited values.
 
-- **`values-elicit`** — runs a Moral Graph Elicitation interview, writes a
-  values card, archives the transcript, and rebuilds a consolidated
-  `VALUES.md`. Triggers on `/values` or when the agent notices a moment
-  worth capturing.
-- **`values-consult`** — model-invoked. When the agent is about to take a
-  stance, vote, draft on your behalf, or otherwise act on your values, it
-  reads `VALUES.md` and either acts, surfaces a tension, or asks you.
+- **`values-elicit`** — runs a Moral Graph Elicitation interview, creates and maintains the runtime values store, writes value cards, archives transcripts, and rebuilds `VALUES.md`.
+- **`values-consult`** — reads `VALUES.md` when the agent is about to take a value-laden stance, recommendation, or action on the user's behalf.
 
-Designed for [OpenClaw](https://openclaw.dev), but the skill files are plain
-markdown — any agent harness that loads markdown skills should work.
+Designed for OpenClaw/ClawHub-style skill installation.
 
-## Package vs runtime state
+## Recommended shape
 
-This repo contains the **portable skill package** only.
+This repo is best treated as a **two-skill suite** with one shared runtime values store.
 
-Your actual values data lives in a separate **runtime values store** outside
-this repo. That includes:
-
-- value cards
-- transcripts
-- generated `VALUES.md`
-- the installed `build.ts`
-
-That is the intended shape. The repo should not contain live values data or
-template cards/transcripts.
+- `values-elicit` owns setup and maintenance of the store
+- `values-consult` reads from the store
+- both skills share the same runtime path convention
 
 ## Runtime values path
 
-The skills use this path convention:
+Both skills use:
 
 - **Preferred:** `AGENT_VALUES_DIR`
 - **Fallback:** `~/.openclaw/values`
 
-So if `AGENT_VALUES_DIR` is unset, runtime state lives under:
+So by default the live store is:
 
 ```bash
 ~/.openclaw/values
 ```
 
-## Install
+That directory should contain runtime state such as:
 
-For local OpenClaw testing:
+- `cards/`
+- `transcripts/`
+- `VALUES.md`
+- `build.ts`
 
-```bash
-git clone https://github.com/meaningalignment/agent-values.git
-cd agent-values
-./install.sh
-openclaw gateway restart
-```
+## ClawHub publishing
 
-What `install.sh` does:
-- installs the skills into the local OpenClaw skills directory
-- creates the runtime values directory if needed
-- installs `build.ts` into the runtime values directory
-- creates a minimal `VALUES.md` if missing
-- preserves existing cards/transcripts/`VALUES.md`
-
-By default, `install.sh` uses:
-
-- skills: `/root/.openclaw/workspace/.openclaw/skills/`
-- values runtime: `~/.openclaw/values`
-
-If you want a different runtime values location:
-
-```bash
-AGENT_VALUES_DIR=/some/other/path ./install.sh
-```
-
-## ClawHub publish/install path
-
-The portable payload is the `skills/` directory.
-
-Typical publish flow:
+Publish the two skill folders separately:
 
 ```bash
 clawhub publish ./skills/values-elicit --slug values-elicit --name "Values Elicit" --version 0.1.0 --changelog "Initial release"
 clawhub publish ./skills/values-consult --slug values-consult --name "Values Consult" --version 0.1.0 --changelog "Initial release"
 ```
 
-ClawHub publishes individual skill folders, so this repo currently maps most
-cleanly to **two published skills**.
-
-Typical install flow after publishing:
+Typical install flow:
 
 ```bash
 clawhub install values-elicit
@@ -96,72 +55,44 @@ clawhub install values-consult
 
 ```text
 agent-values/
-├── skills/
-│   ├── values-elicit/
-│   │   └── SKILL.md
-│   └── values-consult/
-│       └── SKILL.md
-├── values-build.ts
-├── install.sh
-└── clawhub.json
+└── skills/
+    ├── values-elicit/
+    │   ├── SKILL.md
+    │   └── scripts/
+    │       └── build-values.ts
+    └── values-consult/
+        └── SKILL.md
 ```
+
+## Runtime behavior
+
+### First run of `values-elicit`
+
+On first invocation, `values-elicit` should silently initialize the runtime
+values store in the background if needed:
+
+- create the values directory
+- create `cards/`
+- create `transcripts/`
+- create a minimal `VALUES.md` if missing
+- make the build helper available as `build.ts`
+
+Then it should proceed directly into the elicitation conversation without any
+setup chatter.
+
+### `values-consult` without prior elicitation
+
+If no `VALUES.md` exists yet, `values-consult` should say so plainly and
+suggest running `values-elicit` first.
 
 ## Use
 
-**Run an elicitation:**
+Manual invocation examples:
 
 ```text
-/values
+/values_elicit
+/values_consult
 ```
 
-Or just say:
-
-```text
-run values elicitation
-```
-
-If `AGENT_VALUES_DIR` is unset, the runtime outputs land here:
-
-```bash
-~/.openclaw/values/cards/<slug>.md
-~/.openclaw/values/transcripts/<YYYY-MM-DD>-<slug>.md
-~/.openclaw/values/VALUES.md
-```
-
-**Consult automatically:** `values-consult` is model-invoked — when your agent
-is about to make a value-laden choice, it reads the configured `VALUES.md`
-and decides whether to act, surface a tension between cards, or ask you.
-
-## Rebuilding VALUES.md manually
-
-```bash
-node ~/.openclaw/values/build.ts
-```
-
-Or with an explicit runtime path:
-
-```bash
-AGENT_VALUES_DIR=/my/values node /my/values/build.ts
-```
-
-## Updating
-
-```bash
-cd agent-values
-git pull
-./install.sh
-```
-
-Re-running the installer overwrites the installed skill files and `build.ts`
-but preserves your existing runtime values data.
-
-## Uninstall
-
-Remove the installed skills:
-
-```bash
-rm -rf /root/.openclaw/workspace/.openclaw/skills/values-elicit
-rm -rf /root/.openclaw/workspace/.openclaw/skills/values-consult
-```
-
-Runtime values data is separate and remains until you delete it explicitly.
+Depending on the chat surface, dashed skill names may appear as underscored
+slash commands.

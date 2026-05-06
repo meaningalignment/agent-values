@@ -1,7 +1,0 @@
-{
-  "slug": "agent-values",
-  "name": "Agent Values",
-  "version": "0.1.0",
-  "description": "Two agent skills for eliciting values into reusable cards and consulting them during value-laden decisions.",
-  "skillsDir": "skills"
-}

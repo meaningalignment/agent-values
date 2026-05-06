@@ -1,7 +1,7 @@
 ---
 name: values-consult
 description: Consult the user's values when about to make a value-laden choice on their behalf. Use before authoring opinions, ranking statements, voting, drafting communications that take a stance, or any task where the right action depends on what the user cares about. Reads the configured values store.
-user-invocable: false
+user-invocable: true
 metadata: {"openclaw": {"emoji": "🧭"}}
 ---
 
@@ -20,6 +20,8 @@ depends on their values, not just on facts. Examples:
 
 1. **Read `$AGENT_VALUES_DIR/VALUES.md`** in full (or `~/.openclaw/values/VALUES.md` if `AGENT_VALUES_DIR` is unset). This is a concatenation
    of the user's values cards. It's not long — read all of it.
+
+   If the file does not exist yet, say plainly that no values have been elicited yet and suggest running `values-elicit` first.
 
 2. **Identify which cards are relevant** to the task at hand. Often more
    than one will be. Pay attention to the contexts tag and the story —
@@ -45,8 +47,8 @@ depends on their values, not just on facts. Examples:
       should dominate, or does it depend on something I'm missing?"
 
    c. **No card clearly applies → ask the user, and offer to elicit.**
-      If nothing in VALUES.md is a good fit, tell him. Offer to run a
-      values-elicit interview if the question is one he wants to think
+      If nothing in VALUES.md is a good fit, say so. Offer to run a
+      values-elicit interview if the question is one they want to think
       through more deeply. Don't extrapolate from loosely related cards.
 
 5. **Bias toward asking.** The user would rather be interrupted than

@@ -1,9 +1,13 @@
-import { readdirSync, readFileSync, writeFileSync } from "node:fs";
-import { join, resolve } from "node:path";
+import { mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
+import { dirname, join, resolve } from "node:path";
 
 const VALUES_DIR = resolve(process.env.AGENT_VALUES_DIR || `${process.env.HOME || "~"}/.openclaw/values`);
 const CARDS_DIR = join(VALUES_DIR, "cards");
+const TRANSCRIPTS_DIR = join(VALUES_DIR, "transcripts");
 const OUTPUT = join(VALUES_DIR, "VALUES.md");
+
+mkdirSync(CARDS_DIR, { recursive: true });
+mkdirSync(TRANSCRIPTS_DIR, { recursive: true });
 
 function parseFrontmatter(raw: string): { data: Record<string, any>; content: string } {
   const match = raw.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
@@ -34,13 +38,10 @@ const sections: string[] = [];
 for (const file of files) {
   const raw = readFileSync(join(CARDS_DIR, file), "utf-8");
   const { data, content } = parseFrontmatter(raw);
-
   const title = data.title || file.replace(/\.md$/, "");
   const contexts = Array.isArray(data.contexts) ? data.contexts.join(", ") : data.contexts || "";
-
   const body = content.trimStart();
-  const section = `# ${title}\n\n*Contexts: ${contexts}*\n\n${body}`;
-  sections.push(section);
+  sections.push(`# ${title}\n\n*Contexts: ${contexts}*\n\n${body}`);
 }
 
 const now = new Date().toISOString();

@@ -186,10 +186,19 @@ Draft it, show it to me, iterate until I'm happy.
 
 ## Output: writing the files
 
-Use this values store path unless the local install docs specify otherwise:
+Use this values store path:
 
 - Preferred: `$AGENT_VALUES_DIR`
 - Fallback: `~/.openclaw/values`
+
+On every run, before writing anything, silently ensure these exist:
+
+- `$AGENT_VALUES_DIR/` (or `~/.openclaw/values/`)
+- `cards/`
+- `transcripts/`
+- `VALUES.md` (create a minimal file if missing)
+
+This setup should happen in the background with no extra user-facing ceremony unless it fails.
 
 Once I'm happy with the title, story, explication, policies, and contexts:
 
@@ -223,7 +232,7 @@ Once I'm happy with the title, story, explication, policies, and contexts:
    `$AGENT_VALUES_DIR/transcripts/<YYYY-MM-DD>-<slug>.md` (or `~/.openclaw/values/transcripts/<YYYY-MM-DD>-<slug>.md` if unset). Plain markdown
    dump of our conversation with `**Me:**` / `**Agent:**` turn markers.
 
-4. **Rebuild VALUES.md** by running the local values build script in the configured store, typically `node "$AGENT_VALUES_DIR/build.ts"` (or `node ~/.openclaw/values/build.ts` if unset).
+4. **Rebuild VALUES.md** by using the bundled helper at `scripts/build-values.ts`. If needed, copy it into the values store as `build.ts`, then run `node "$AGENT_VALUES_DIR/build.ts"` (or `node ~/.openclaw/values/build.ts` if unset).
 
 5. **Confirm** to me that the card was written, with its file path.
 
