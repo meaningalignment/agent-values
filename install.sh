@@ -2,7 +2,7 @@
 set -euo pipefail
 
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-SKILLS_TARGET="${OPENCLAW_SKILLS_DIR:-/root/.openclaw/workspace/.openclaw/skills}"
+SKILLS_TARGET="${OPENCLAW_SKILLS_DIR:-/root/.openclaw/workspace/skills}"
 VALUES_TARGET="${AGENT_VALUES_DIR:-${HOME}/.openclaw/values}"
 
 ELICIT_SRC="${REPO_DIR}/skills/values-elicit"

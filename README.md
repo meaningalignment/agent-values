@@ -9,7 +9,7 @@ Designed for OpenClaw/ClawHub-style skill installation.
 
 ## Recommended shape
 
-This repo is best treated as a **two-skill suite** with one shared runtime values store.
+This repo is a **two-skill suite** with one shared runtime values store.
 
 - `values-elicit` owns setup and maintenance of the store
 - `values-consult` reads from the store
@@ -28,12 +28,36 @@ So by default the live store is:
 ~/.openclaw/values
 ```
 
-That directory should contain runtime state such as:
+That directory contains runtime state such as:
 
 - `cards/`
 - `transcripts/`
 - `VALUES.md`
 - `build.ts`
+
+## GitHub / local install
+
+If someone is installing directly from GitHub rather than through ClawHub:
+
+```bash
+git clone https://github.com/meaningalignment/agent-values.git
+cd agent-values
+./install.sh
+```
+
+`install.sh`:
+- installs the two skills into `OPENCLAW_SKILLS_DIR`
+- defaults `OPENCLAW_SKILLS_DIR` to the standard workspace skills location: `/root/.openclaw/workspace/skills`
+- installs the runtime build helper into `AGENT_VALUES_DIR` or `~/.openclaw/values`
+- creates a minimal `VALUES.md` if missing
+
+Optional overrides:
+
+```bash
+OPENCLAW_SKILLS_DIR=/some/skills/path AGENT_VALUES_DIR=/some/values/path ./install.sh
+```
+
+After install, restart OpenClaw if needed.
 
 ## ClawHub publishing
 
@@ -55,6 +79,7 @@ clawhub install values-consult
 
 ```text
 agent-values/
+├── install.sh
 └── skills/
     ├── values-elicit/
     │   ├── SKILL.md
