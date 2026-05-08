@@ -33,10 +33,25 @@ Example, for a value about group decision-making:
 
 ### Rules
 
-1. **Constitutive, not instrumental.** "MOMENTS when someone drops their
-   professional persona" is constitutive. "LEADS ACQUIRED at a networking
-   event" is instrumental — it serves another goal. If unsure, ask: "would
-   I still want to attend to this if I had another way to get the goal?"
+1. **Constitutive, not instrumental.** Every policy must be something the
+   user would attend to because *attending to it is part of living well*,
+   not because it serves a separate goal. A driver paying attention to
+   "WHETHER I'm staying in lane" is instrumental — they care about not
+   crashing. "SENSATIONS in my body that tell me whether I'm following
+   what I actually believe" is constitutive — attending to that just *is*
+   part of what a good life is for this person. If unsure, ask the user:
+   "if there were another way to get the underlying goal, would you still
+   attend to this?" If they'd drop it, it's instrumental. If they'd keep
+   attending to it anyway, it's constitutive.
+
+   Other examples:
+   - Constitutive: "MOMENTS when someone drops their professional persona"
+   - Instrumental: "LEADS ACQUIRED at a networking event"
+   - Constitutive: "THE FEELING of capacity in my body after a meal"
+   - Instrumental: "MEALS with a low calorie count"
+
+   A source of meaning whose policies are mostly instrumental is not a
+   source of meaning — it's a strategy. Push back gently and re-ask.
 2. **Precise, not vague.** I should be able to actively look for the thing.
    Good: "tension in someone's voice", "the rhythm of conversation",
    "instincts I'm tempted to override". Too vague: "the energy in a room",
