@@ -2,7 +2,7 @@
 name: values-elicit
 description: Run a Moral Graph Elicitation interview when the user expresses a strong feeling, a goal, a norm, or a difficult choice in a way that suggests an underlying source of meaning worth capturing. Produces a values card stored in the configured values store. Also runnable as the /values slash command.
 user-invocable: true
-metadata: {"openclaw": {"emoji": "🪺"}}
+metadata: {"openclaw": {"emoji": "🪺", "requires": {"bins": ["node"]}}}
 ---
 
 # Values Elicitation
@@ -59,10 +59,10 @@ After Stage 3 (the blocker question), without asking for confirmation:
 2. **Write the card** to `cards/<slug>.md` using the format in `references/cards.md`.
 3. **Write the transcript** to `transcripts/<YYYY-MM-DD>-<slug>.md` — plain
    markdown dump with `**Me:**` / `**Agent:**` turn markers.
-4. **Rebuild VALUES.md** by running `node "$AGENT_VALUES_DIR/build.ts"`
-   (or `node ~/.openclaw/values/build.ts` if unset). If the build helper
-   isn't there yet, copy `scripts/build-values.ts` into the values store
-   as `build.ts` first.
+4. **Rebuild VALUES.md** by running `node "$AGENT_VALUES_DIR/build.mjs"`
+   (or `node ~/.openclaw/values/build.mjs` if unset). If the build helper
+   isn't there yet, copy `scripts/build-values.mjs` into the values store
+   as `build.mjs` first.
 5. **Tell the user** the file path and that they can edit it if anything
    needs changing.
 
