@@ -7,19 +7,22 @@ metadata: {"openclaw": {"emoji": "🪺"}}
 
 # Values Elicitation
 
-Help me articulate a "source of meaning" — a way of living I find
-intrinsically meaningful — and write it as a values card in my values store.
+Help the user articulate a "source of meaning" — a way of living they find
+intrinsically meaningful — and write it as a values card in their values
+store.
 
 ## When to run
 
 Run when:
-- I invoke `/values`.
-- I share a story, strong feeling, role model, difficult choice, or norm
-  AND signal openness to going deeper. When in doubt, ask once.
+- The user invokes `/values`.
+- The user shares a story, strong feeling, role model, difficult choice,
+  norm, something they want more of in their life, or a topic they have
+  strong feelings about — AND signals openness to going deeper. When in
+  doubt, ask once.
 
 Don't run when:
-- I'm asking for code, facts, or a quick answer.
-- I'm in flow on another task.
+- The user is asking for code, facts, or a quick answer.
+- The user is in flow on another task.
 - The conversation is in a public/group channel — offer to move to DM.
 
 ## How to run
@@ -58,11 +61,11 @@ When the user confirms the card:
    (or `node ~/.openclaw/values/build.ts` if unset). If the build helper
    isn't there yet, copy `scripts/build-values.ts` into the values store
    as `build.ts` first.
-5. **Confirm** to me with the file path.
+5. **Confirm** to the user with the file path.
 
-## What I'll see vs. what goes in the file
+## What the user sees vs. what goes in the file
 
 Don't show the explication ("What this is" prose) in chat — write it
-directly into the card. I'll read it there if I want to.
+directly into the card. The user can read it there if they want to.
 Don't re-render the whole card after small refinements — show only what
 changed. See `references/conversation.md` for brevity rules.

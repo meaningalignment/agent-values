@@ -2,19 +2,21 @@
 
 ## What a source of meaning is
 
-A way of living that's intrinsically meaningful to me — not just something
-I prefer or enjoy. More specific than words like "honesty" or
-"authenticity"; it specifies a particular *kind* of honesty or authenticity
-through what I pay attention to.
+A way of living that the user finds intrinsically meaningful — not just
+something they prefer or enjoy. More specific than words like "honesty"
+or "authenticity"; it specifies a particular *kind* of honesty or
+authenticity through what they pay attention to.
 
-A source of meaning opens a space of possibility, rather than satisfying a
-preference. It's constitutive of what I think a good life is — not
-instrumental to some other goal.
+A source of meaning opens a space of possibility rather than satisfying a
+preference. It's constitutive of what the user thinks a good life is —
+not instrumental to some other goal.
 
 ## Attention policies — the format
 
-Each policy is a precise thing I can actively orient my attention toward,
-not an abstract value or an outcome. Format:
+Each policy is a precise thing the user can actively orient their
+attention toward, not an abstract value or an outcome. The policies are
+written in the user's voice (first person), as instructions to themselves
+about what to notice. Format:
 
 > **PLURAL_NOUN** + qualifier phrase
 
@@ -52,14 +54,14 @@ Example, for a value about group decision-making:
 
    A source of meaning whose policies are mostly instrumental is not a
    source of meaning — it's a strategy. Push back gently and re-ask.
-2. **Precise, not vague.** I should be able to actively look for the thing.
-   Good: "tension in someone's voice", "the rhythm of conversation",
-   "instincts I'm tempted to override". Too vague: "the energy in a room",
-   "moments of alignment", "presence" (present to what?), "connection"
-   (connected how?).
-3. **From the actor's perspective.** Read like instructions to someone
-   trying to live this value. "SENSATIONS that point to misgivings I have
-   about the current path."
+2. **Precise, not vague.** Someone should be able to actively look for
+   the thing. Good: "tension in someone's voice", "the rhythm of
+   conversation", "instincts I'm tempted to override". Too vague: "the
+   energy in a room", "moments of alignment", "presence" (present to
+   what?), "connection" (connected how?).
+3. **From the actor's perspective.** Read like instructions the user
+   gives themselves about what to notice. "SENSATIONS that point to
+   misgivings I have about the current path."
 4. **General words.** "strangers" not "customers". "objects" not "trees".
 5. **No "meaningful" or synonyms ("deep", "profound").** Say more
    specifically what's worth attending to.
@@ -68,30 +70,31 @@ Example, for a value about group decision-making:
 
 ## What goes in the card
 
-- **title** — 2-5 words. Not cheesy. Distinguishes this from similar cards
-  I might already have. Check `cards/` for collisions before finalizing.
+- **title** — 2-5 words. Not cheesy. Distinguishes this from similar
+  cards the user might already have. Check `cards/` for collisions
+  before finalizing.
 - **tags** — 2-4 kebab-case shorthand tags for filtering
   (e.g. `intellectuality`, `conversation`, `parenting`).
-- **story** — one sentence. First person, present continuous. Describes
-  the exact moment that felt meaningful — not the resulting feeling.
-  ("...which made me feel deeply connected" — don't do this.) No names or
-  sensitive PII; replace with "my mom", "my friend", etc. Example:
-  "Watching my mom lean over and kiss my dad on the forehead, beaming
-  love and gratitude."
+- **story** — one sentence in the user's voice. First person, present
+  continuous. Describes the exact moment that felt meaningful — not the
+  resulting feeling ("...which made me feel deeply connected" — don't do
+  this). No names or sensitive PII; replace with "my mom", "my friend",
+  etc. Example: "Watching my mom lean over and kiss my dad on the
+  forehead, beaming love and gratitude."
 - **where this shows up** — concrete, recognizable situations where this
-  value comes up. Sentences, bullets, whatever fits. Don't force a
-  count or form. E.g. "In heated dinner conversations, or late at night
-  when a friend is half-formed about an idea."
+  value comes up for the user. Sentences, bullets, whatever fits. Don't
+  force a count or form. E.g. "In heated dinner conversations, or late
+  at night when a friend is half-formed about an idea."
 - **what this is** — 2-4 paragraphs of prose explicating the value, so a
-  future reader (a future me, another agent in a deliberation) can
+  future reader (the user later, another agent in a deliberation) can
   understand it without having been in the elicitation. Grounded in the
   story and the policies; every claim traces back. Defensive against
   likely misreadings — if "tending the quiet" could be confused with
   sentimentality, name that and rule it out. No abstract or ideological
   language; no "I value X" framings. **Don't show this prose in chat.**
   Write it into the card; the user can read it there if they want to.
-- **what I pay attention to** — 3-6 attention policies, formatted as
-  described above.
+- **what I pay attention to** — 3-6 attention policies in the user's
+  voice, formatted per the rules above.
 - **what gets in the way** — lightly cleaned-up version of the blocker
   the user named. Don't editorialize; record what they said. Form is
   whatever fits — a sentence, a few bullets, etc.
