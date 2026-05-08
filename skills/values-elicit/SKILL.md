@@ -14,16 +14,14 @@ store.
 ## When to run
 
 Run when:
-- The user invokes `/values`.
+- The user invokes the skill.
 - The user shares a story, strong feeling, role model, difficult choice,
   norm, something they want more of in their life, or a topic they have
   strong feelings about — AND signals openness to going deeper. When in
   doubt, ask once.
 
 Don't run when:
-- The user is asking for code, facts, or a quick answer.
 - The user is in flow on another task.
-- The conversation is in a public/group channel — offer to move to DM.
 
 ## How to run
 
@@ -51,7 +49,7 @@ Silently ensure these exist on every run (no chatter):
 - `$AGENT_VALUES_DIR/` (or `~/.openclaw/values/`)
 - `cards/`
 - `transcripts/`
-- `VALUES.md` (create a minimal file if missing)
+- `VALUES.md` (create an empty file if missing)
 - `build.mjs` (copy from `scripts/build-values.mjs` if missing)
 
 **First run only.** Detect first run by whether `VALUES.md` existed before
