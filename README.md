@@ -25,14 +25,14 @@ Default store layout:
 ```bash
 ~/.openclaw/values/
 ├── VALUES.md       # generated, with meta header + all cards
-├── build.ts        # rebuild helper (copied on first run)
+├── build.mjs       # rebuild helper (copied on first run)
 ├── cards/          # one card per value
 └── transcripts/    # archived elicitation transcripts
 ```
 
 The skill bootstraps this layout on first run — it creates the directory,
 seeds `VALUES.md` if missing, and copies `scripts/build-values.ts` into the
-store as `build.ts` the first time it rebuilds.
+store as `build.mjs` the first time it rebuilds.
 
 ## Install
 
@@ -91,7 +91,7 @@ agent-values/
         │   ├── conversation.md
         │   └── cards.md
         └── scripts/
-            └── build-values.ts
+            └── build-values.mjs
 ```
 
 ## Use
