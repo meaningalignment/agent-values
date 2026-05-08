@@ -31,7 +31,7 @@ Example, for a value about group decision-making:
 - WISDOM that emerges in a discursive, responsible context
 ```
 
-### Rules
+### Rules for attention policies
 
 1. **Constitutive, not instrumental.** Every policy must be something the
    user would attend to because *attending to it is part of living well*,
@@ -66,7 +66,37 @@ Example, for a value about group decision-making:
 6. **Together they cohere.** 3-6 policies that fit as a single way of
    distinguishing quality in a domain — not a grab bag.
 
-## Card format
+## What goes in the card
+
+- **title** — 2-5 words. Not cheesy. Distinguishes this from similar cards
+  I might already have. Check `cards/` for collisions before finalizing.
+- **tags** — 2-4 kebab-case shorthand tags for filtering
+  (e.g. `intellectuality`, `conversation`, `parenting`).
+- **story** — one sentence. First person, present continuous. Describes
+  the exact moment that felt meaningful — not the resulting feeling.
+  ("...which made me feel deeply connected" — don't do this.) No names or
+  sensitive PII; replace with "my mom", "my friend", etc. Example:
+  "Watching my mom lean over and kiss my dad on the forehead, beaming
+  love and gratitude."
+- **where this shows up** — concrete, recognizable situations where this
+  value comes up. Sentences, bullets, whatever fits. Don't force a
+  count or form. E.g. "In heated dinner conversations, or late at night
+  when a friend is half-formed about an idea."
+- **what this is** — 2-4 paragraphs of prose explicating the value, so a
+  future reader (a future me, another agent in a deliberation) can
+  understand it without having been in the elicitation. Grounded in the
+  story and the policies; every claim traces back. Defensive against
+  likely misreadings — if "tending the quiet" could be confused with
+  sentimentality, name that and rule it out. No abstract or ideological
+  language; no "I value X" framings. **Don't show this prose in chat.**
+  Write it into the card; the user can read it there if they want to.
+- **what I pay attention to** — 3-6 attention policies, formatted as
+  described above.
+- **what gets in the way** — lightly cleaned-up version of the blocker
+  the user named. Don't editorialize; record what they said. Form is
+  whatever fits — a sentence, a few bullets, etc.
+
+## Card template
 
 Save to `$AGENT_VALUES_DIR/cards/<slug>.md` (or
 `~/.openclaw/values/cards/<slug>.md` if unset).
@@ -84,8 +114,7 @@ tags: [<kebab-case>, <kebab-case>]
 
 ## Where this shows up
 
-- <In <natural-language situation>>
-- <In <natural-language situation>>
+<sentences or bullets — concrete situations>
 
 ## What this is
 
@@ -98,60 +127,5 @@ tags: [<kebab-case>, <kebab-case>]
 
 ## What gets in the way
 
-<one or two sentences>
+<the blocker, in whatever form fits>
 ```
-
-### Frontmatter
-
-- `title` — 2-5 words. Not cheesy. Distinguishes this from similar cards
-  I might already have — check `cards/` for collisions before finalizing.
-- `elicited_at` — today's ISO date.
-- `tags` — 2-4 kebab-case shorthand tags for filtering
-  (e.g. `[intellectuality, conversation, parenting]`).
-
-### Story
-
-The single-sentence moment that anchors this value.
-
-- First person, present continuous, from my perspective.
-- Describes the exact moment that felt meaningful — not the resulting
-  feeling. ("...which made me feel deeply connected" — don't do this.)
-- No names or sensitive PII. Replace names with "my mom", "my dad",
-  "my friend", "someone I love", "someone I was talking to".
-- Example: "Watching my mom lean over and kiss my dad on the forehead,
-  beaming love and gratitude."
-
-### Where this shows up
-
-1-3 natural-language situations where this value comes up for me. These
-are concrete, recognizable contexts — not categories.
-
-- "In heated dinner conversations"
-- "When a friend is half-formed about an idea"
-- "Late at night, debugging alone"
-
-### What this is
-
-2-4 paragraphs of prose explicating the value. Written so a future
-reader (a future me, another agent in a deliberation) can understand the
-value without having been in the elicitation.
-
-- Grounded in the story and the policies. Every claim should trace back.
-- Says what the value is, what it's responding to, and what it isn't to
-  be confused with.
-- Defensive against likely misreadings. If "tending the quiet" could be
-  confused with sentimentality, name that and rule it out.
-- No abstract or ideological language. No "I value X" framings.
-
-Don't show this prose in chat. Write it into the card; the user can read
-it there if they want to.
-
-### What I pay attention to
-
-The 3-6 attention policies, formatted as above.
-
-### What gets in the way
-
-One or two sentences capturing the blocker the user named — what's
-stopping them from living this more. Don't editorialize; just record what
-they said, lightly cleaned up.
