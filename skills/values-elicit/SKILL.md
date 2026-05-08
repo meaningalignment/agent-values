@@ -41,17 +41,35 @@ Read `references/cards.md` before drafting policies or writing the card.
 It covers what a source of meaning is, how to write attention policies,
 and the exact card format.
 
-## Output
+## Setup
 
 Values store path:
 - Preferred: `$AGENT_VALUES_DIR`
 - Fallback: `~/.openclaw/values`
 
-Before writing anything, silently ensure these exist (no setup chatter):
+Silently ensure these exist on every run (no chatter):
 - `$AGENT_VALUES_DIR/` (or `~/.openclaw/values/`)
 - `cards/`
 - `transcripts/`
 - `VALUES.md` (create a minimal file if missing)
+- `build.mjs` (copy from `scripts/build-values.mjs` if missing)
+
+**First run only.** Detect first run by whether `VALUES.md` existed before
+this turn. If it did not, after the silent bootstrap:
+
+1. Tell the user in **one line** where the values store landed (e.g.
+   "Set up your values store at `~/.openclaw/values/`.").
+2. Check for `USER.md` at `$OPENCLAW_USER_MD_PATH`, then
+   `~/.openclaw/workspace/USER.md`, then `~/.openclaw/USER.md`. If one
+   exists and doesn't already mention `VALUES.md`, ask **once** whether
+   to append the contents of `references/USER_MD_SNIPPET.md` so other
+   agents will consult their values. Append if they say yes; otherwise
+   move on. If no `USER.md` is found, mention briefly that they may
+   want to add the snippet to their user profile later.
+3. Proceed straight into the elicitation. Do not repeat any of this on
+   subsequent runs.
+
+## Output
 
 After Stage 3 (the blocker question), without asking for confirmation:
 
@@ -60,9 +78,8 @@ After Stage 3 (the blocker question), without asking for confirmation:
 3. **Write the transcript** to `transcripts/<YYYY-MM-DD>-<slug>.md` — plain
    markdown dump with `**Me:**` / `**Agent:**` turn markers.
 4. **Rebuild VALUES.md** by running `node "$AGENT_VALUES_DIR/build.mjs"`
-   (or `node ~/.openclaw/values/build.mjs` if unset). If the build helper
-   isn't there yet, copy `scripts/build-values.mjs` into the values store
-   as `build.mjs` first.
+   (or `node ~/.openclaw/values/build.mjs` if unset). The Setup step
+   already ensures the helper exists.
 5. **Tell the user** the file path and that they can edit it if anything
    needs changing.
 

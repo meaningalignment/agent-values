@@ -31,8 +31,8 @@ Default store layout:
 ```
 
 The skill bootstraps this layout on first run — it creates the directory,
-seeds `VALUES.md` if missing, and copies `scripts/build-values.ts` into the
-store as `build.mjs` the first time it rebuilds.
+seeds `VALUES.md` if missing, and copies `scripts/build-values.mjs` into the
+store as `build.mjs`.
 
 ## Install
 
@@ -40,11 +40,19 @@ store as `build.mjs` the first time it rebuilds.
 clawhub install values-elicit
 ```
 
+On first invocation, the skill prints a one-line summary of where the
+values store landed and offers to append the values pointer to your
+`USER.md` (looked up via `$OPENCLAW_USER_MD_PATH`, then
+`~/.openclaw/workspace/USER.md`, then `~/.openclaw/USER.md`). After that
+it goes straight into the elicitation; subsequent runs are silent.
+
 ## USER.md integration
 
-Add this section to `USER.md` so future agents know to consult the values
-file both when taking value-laden actions and when interpreting the user's
-values directly:
+The skill can append the snippet automatically on first run. The exact
+text lives at `skills/values-elicit/references/USER_MD_SNIPPET.md`. If
+you'd rather paste it manually, here it is so future agents know to
+consult the values file both when taking value-laden actions and when
+interpreting the user's values directly:
 
 ```md
 ## Values
@@ -88,8 +96,9 @@ agent-values/
     └── values-elicit/
         ├── SKILL.md
         ├── references/
+        │   ├── cards.md
         │   ├── conversation.md
-        │   └── cards.md
+        │   └── USER_MD_SNIPPET.md
         └── scripts/
             └── build-values.mjs
 ```
