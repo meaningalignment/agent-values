@@ -33,7 +33,9 @@ flow, brevity rules, and how to handle goals/feelings/norms.
 1. **Surface** the source of meaning (1-3 exchanges).
 2. **Draft and refine** 3-6 attention policies.
 3. **Ask once** what gets in the way of living this.
-4. **Confirm and write** title + situations, then save the card.
+4. **Write** the card. Don't ask for confirmation on title or
+   situations — generate them, save, and tell the user where the file
+   is and that they can edit it.
 
 Read `references/cards.md` before drafting policies or writing the card.
 It covers what a source of meaning is, how to write attention policies,
@@ -51,7 +53,7 @@ Before writing anything, silently ensure these exist (no setup chatter):
 - `transcripts/`
 - `VALUES.md` (create a minimal file if missing)
 
-When the user confirms the card:
+After Stage 3 (the blocker question), without asking for confirmation:
 
 1. **Pick a slug.** Kebab-cased title. "Tending the Quiet" → `tending-the-quiet`.
 2. **Write the card** to `cards/<slug>.md` using the format in `references/cards.md`.
@@ -61,7 +63,8 @@ When the user confirms the card:
    (or `node ~/.openclaw/values/build.ts` if unset). If the build helper
    isn't there yet, copy `scripts/build-values.ts` into the values store
    as `build.ts` first.
-5. **Confirm** to the user with the file path.
+5. **Tell the user** the file path and that they can edit it if anything
+   needs changing.
 
 ## What the user sees vs. what goes in the file
 

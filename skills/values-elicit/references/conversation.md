@@ -94,19 +94,23 @@ Examples of what tends to come up: lack of time or an overwhelmed
 schedule; lack of skill or knowledge; missing the right people; an
 internal block like fear, shame, or an unresolved experience.
 
-## Stage 4 — Title, situations, write
+## Stage 4 — Write the card
 
-Propose:
+Once the blocker is captured, you have everything you need. Don't ask
+for confirmation on a title or a list of situations — generate them
+yourself, write the card and transcript, rebuild VALUES.md, then send
+one short closing message: the file path and a note that the user can
+edit it if anything needs changing.
+
+Generate yourself:
 - A title (2-5 words, not cheesy, distinguishes this from similar cards
-  the user might already have — check `cards/` for collisions).
+  in `cards/`).
 - 1-3 situations where this value shows up, in natural language
-  (e.g. "In heated dinner conversations", "Late at night when a friend is
-  half-formed about an idea").
-- Tags (kebab-case, 2-4 of them) — derive these yourself, don't ask.
+  (e.g. "In heated dinner conversations", "Late at night when a friend
+  is half-formed about an idea").
+- Tags (kebab-case, 2-4 of them).
 
-Show title + situations in one short message. "Look right?" When the
-user confirms, write the card and transcript and rebuild VALUES.md, then
-tell them the path. Don't show the explication or the full body in chat.
+Don't show the explication or the full card body in chat.
 
 ## What to do if the user keeps going
 
