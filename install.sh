@@ -20,10 +20,10 @@ is), and operationalized as discernment criteria for recognizing the value
 in the moment of choice (what I pay attention to).
 
 The file may be incomplete — absence isn't evidence the user doesn't care
-about something. And cards are context-bound: the user's value about
+about something. And cards are situation-bound: the user's value about
 honesty in technical work is not the same value as honesty in close
-relationships, even when both mention honesty. Match the card's contexts
-rather than extrapolating across them.
+relationships, even when both mention honesty. Match the card's
+situations and tags rather than extrapolating across them.
 
 Consult VALUES.md when acting on the user's behalf in a value-laden way —
 drafting opinions, ranking, voting, deliberating in Habermolt, taking
@@ -43,6 +43,7 @@ mkdir -p "${SKILLS_TARGET}/values-elicit" \
 
 cp "${ELICIT_SRC}/SKILL.md" "${SKILLS_TARGET}/values-elicit/SKILL.md"
 cp -R "${ELICIT_SRC}/scripts" "${SKILLS_TARGET}/values-elicit/"
+cp -R "${ELICIT_SRC}/references" "${SKILLS_TARGET}/values-elicit/"
 cp "${CONSULT_SRC}/SKILL.md" "${SKILLS_TARGET}/values-consult/SKILL.md"
 cp "${BUILD_SRC}" "${VALUES_TARGET}/build.ts"
 
@@ -57,6 +58,7 @@ fi
 echo
 echo "Installed skills:"
 echo "  ${SKILLS_TARGET}/values-elicit/SKILL.md"
+echo "  ${SKILLS_TARGET}/values-elicit/references/"
 echo "  ${SKILLS_TARGET}/values-elicit/scripts/build-values.ts"
 echo "  ${SKILLS_TARGET}/values-consult/SKILL.md"
 echo "Installed values runtime:"

@@ -24,8 +24,8 @@ depends on their values, not just on facts. Examples:
    If the file does not exist yet, say plainly that no values have been elicited yet and suggest running `values-elicit` first.
 
 2. **Identify which cards are relevant** to the task at hand. Often more
-   than one will be. Pay attention to the contexts tag and the story —
-   these are your strongest signals for whether a card applies. Don't
+   than one will be. Strongest signals: the `## Where this shows up`
+   situations, the story, and the `tags` frontmatter field. Don't
    over-rely on the title; titles are compressed.
 
 3. **Check for tension between relevant cards.** Many real value-laden
@@ -61,10 +61,10 @@ depends on their values, not just on facts. Examples:
 - Do not treat attention policies as preferences. They are discernment
   criteria — they tell you what to look for in the moment of choice, not
   what the user "prefers" in the abstract.
-- Do not flatten context-bound values into context-free principles.
+- Do not flatten situation-bound values into context-free principles.
   A person's value about honesty in technical work is not the same as their
   value about honesty in close relationships, even if both cards mention
-  honesty.
+  honesty. Match by the card's situations and tags, not by title.
 - Do not surface VALUES.md content to third parties (e.g., other agents
   in a deliberation) verbatim. Use it to inform what you say; don't quote
   from it.

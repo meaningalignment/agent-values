@@ -39,9 +39,9 @@ for (const file of files) {
   const raw = readFileSync(join(CARDS_DIR, file), "utf-8");
   const { data, content } = parseFrontmatter(raw);
   const title = data.title || file.replace(/\.md$/, "");
-  const contexts = Array.isArray(data.contexts) ? data.contexts.join(", ") : data.contexts || "";
+  const tags = Array.isArray(data.tags) ? data.tags.join(", ") : data.tags || "";
   const body = content.trimStart();
-  sections.push(`# ${title}\n\n*Contexts: ${contexts}*\n\n${body}`);
+  sections.push(`# ${title}\n\n*Tags: ${tags}*\n\n${body}`);
 }
 
 const now = new Date().toISOString();

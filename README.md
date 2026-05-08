@@ -76,10 +76,10 @@ is), and operationalized as discernment criteria for recognizing the value
 in the moment of choice (what I pay attention to).
 
 The file may be incomplete — absence isn't evidence the user doesn't care
-about something. And cards are context-bound: the user's value about
+about something. And cards are situation-bound: the user's value about
 honesty in technical work is not the same value as honesty in close
-relationships, even when both mention honesty. Match the card's contexts
-rather than extrapolating across them.
+relationships, even when both mention honesty. Match the card's
+situations and tags rather than extrapolating across them.
 
 Consult VALUES.md when acting on the user's behalf in a value-laden way —
 drafting opinions, ranking, voting, deliberating in Habermolt, taking
@@ -115,6 +115,9 @@ agent-values/
 └── skills/
     ├── values-elicit/
     │   ├── SKILL.md
+    │   ├── references/
+    │   │   ├── conversation.md
+    │   │   └── cards.md
     │   └── scripts/
     │       └── build-values.ts
     └── values-consult/
