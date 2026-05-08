@@ -9,46 +9,36 @@ by reading `VALUES.md` directly — its own header explains the schema and
 how to use the cards. The pointer to that file is added to `USER.md` (see
 "USER.md integration" below).
 
+## Requirements
+
+- `node` on `PATH` (used to rebuild `VALUES.md` from cards)
+
 ## Runtime values path
 
 The skill uses:
 
-- **Preferred:** `AGENT_VALUES_DIR`
-- **Fallback:** `~/.openclaw/values`
+- **Preferred:** `AGENT_VALUES_DIR` (optional override)
+- **Default:** `~/.openclaw/values`
 
 Default store layout:
 
 ```bash
 ~/.openclaw/values/
 ├── VALUES.md       # generated, with meta header + all cards
-├── build.ts        # rebuild helper (copied during install)
+├── build.ts        # rebuild helper (copied on first run)
 ├── cards/          # one card per value
 └── transcripts/    # archived elicitation transcripts
 ```
 
-## GitHub / local install
+The skill bootstraps this layout on first run — it creates the directory,
+seeds `VALUES.md` if missing, and copies `scripts/build-values.ts` into the
+store as `build.ts` the first time it rebuilds.
+
+## Install
 
 ```bash
-git clone https://github.com/meaningalignment/agent-values.git
-cd agent-values
-./install.sh
+clawhub install values-elicit
 ```
-
-`install.sh`:
-- installs the skill into `OPENCLAW_SKILLS_DIR`
-- defaults `OPENCLAW_SKILLS_DIR` to the standard workspace skills location: `/root/.openclaw/workspace/skills`
-- installs the runtime build helper into `AGENT_VALUES_DIR` or `~/.openclaw/values`
-- generates an initial `VALUES.md` (with the meta header) if one is missing
-- checks for a `USER.md` file and, if it does not already mention `VALUES.md`, prints a recommended `## Values` section to add manually
-- the recommended `USER.md` section tells future agents to consult `VALUES.md` both for value-laden actions and for direct questions about what the user cares about in a given domain
-
-Optional overrides:
-
-```bash
-OPENCLAW_SKILLS_DIR=/some/skills/path AGENT_VALUES_DIR=/some/values/path OPENCLAW_USER_MD_PATH=/some/USER.md ./install.sh
-```
-
-After install, restart OpenClaw if needed.
 
 ## USER.md integration
 
@@ -84,27 +74,16 @@ than guess.
 To articulate a new value, run `/values`.
 ```
 
-The installer does **not** modify `USER.md` automatically; it only prints this snippet if the pointer appears to be missing.
-
 ## ClawHub publishing
 
 ```bash
-clawhub publish ./skills/values-elicit --slug values-elicit --name "Values Elicit" --version 0.2.0 --changelog "Restructured into SKILL.md + references; added situations and blockers; removed companion consult skill in favor of USER.md guidance."
+clawhub publish ./skills/values-elicit --slug values-elicit --name "Values Elicit" --version 0.2.0 --changelog "Declare node as a runtime requirement; clawhub-first install."
 ```
-
-Typical install:
-
-```bash
-clawhub install values-elicit
-```
-
-For ClawHub users, the same `USER.md` recommendation applies.
 
 ## Repository structure
 
 ```text
 agent-values/
-├── install.sh
 └── skills/
     └── values-elicit/
         ├── SKILL.md
@@ -114,19 +93,6 @@ agent-values/
         └── scripts/
             └── build-values.ts
 ```
-
-## Runtime behavior
-
-On first invocation, `values-elicit` silently initializes the runtime
-values store in the background if needed:
-
-- creates the values directory
-- creates `cards/` and `transcripts/`
-- generates `VALUES.md` (with meta header) if missing
-- makes the build helper available as `build.ts`
-
-Then it proceeds directly into the elicitation conversation — no setup
-chatter.
 
 ## Use
 

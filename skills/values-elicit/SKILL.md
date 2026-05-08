@@ -2,7 +2,7 @@
 name: values-elicit
 description: Run a Moral Graph Elicitation interview when the user expresses a strong feeling, a goal, a norm, or a difficult choice in a way that suggests an underlying source of meaning worth capturing. Produces a values card stored in the configured values store. Also runnable as the /values slash command.
 user-invocable: true
-metadata: {"openclaw": {"emoji": "🪺"}}
+metadata: {"openclaw": {"emoji": "🪺", "requires": {"bins": ["node"]}}}
 ---
 
 # Values Elicitation
