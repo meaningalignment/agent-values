@@ -35,19 +35,19 @@ Example, for a value about group decision-making:
 
 1. **Constitutive, not instrumental.** Every policy must be something the
    user would attend to because *attending to it is part of living well*,
-   not because it serves a separate goal. A driver paying attention to
-   "WHETHER I'm staying in lane" is instrumental — they care about not
-   crashing. "SENSATIONS in my body that tell me whether I'm following
-   what I actually believe" is constitutive — attending to that just *is*
-   part of what a good life is for this person. If unsure, ask the user:
-   "if there were another way to get the underlying goal, would you still
-   attend to this?" If they'd drop it, it's instrumental. If they'd keep
-   attending to it anyway, it's constitutive.
+   not because it serves a separate goal. A driver tracking "DRIFTS of the
+   car toward the lane line" is instrumental — they care about not
+   crashing, full stop. "SENSATIONS in my body that tell me whether I'm
+   following what I actually believe" is constitutive — attending to that
+   just *is* part of what a good life is for this person. If unsure, ask
+   the user: "if there were another way to get the underlying goal, would
+   you still attend to this?" If they'd drop it, it's instrumental. If
+   they'd keep attending to it anyway, it's constitutive.
 
    Other examples:
    - Constitutive: "MOMENTS when someone drops their professional persona"
    - Instrumental: "LEADS ACQUIRED at a networking event"
-   - Constitutive: "THE FEELING of capacity in my body after a meal"
+   - Constitutive: "FEELINGS of capacity in my body after a meal"
    - Instrumental: "MEALS with a low calorie count"
 
    A source of meaning whose policies are mostly instrumental is not a
